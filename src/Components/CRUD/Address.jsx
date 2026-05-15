@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink , useNavigate} from "react-router-dom";
-import AddNewAddress from "./AddnewAdrees";
-import UpdateAddress from "./updateAddress.";
+import AddNewAddress from "./AddNewAdrees";
+import UpdateAddress from "./UpdateAddress";
 
 const Address = () => {
   const [showAddAddress, setShowAddAddress] = useState(false);
