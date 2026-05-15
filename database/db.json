@@ -1,0 +1,80 @@
+{
+  "address": [
+    {
+      "name": "samir kumar rana",
+      "mobile": "9556354936",
+      "area": "Ammerpet",
+      "landmark": "S R Nagar",
+      "pincode": "761118",
+      "id": "OhJJ_9iJDJI"
+    },
+    {
+      "name": "Ramesh",
+      "mobile": "9856345093",
+      "area": "Punjaguta",
+      "landmark": "hyd",
+      "pincode": "50003",
+      "id": "KKZEkljEa84"
+    },
+    {
+      "name": "samir kumar rana",
+      "mobile": "7735083161",
+      "area": "Ammerpet",
+      "landmark": "S R Nagar",
+      "pincode": "761118",
+      "id": "MbolNa7fSsE"
+    },
+    {
+      "name": "samir kumar rana",
+      "mobile": "9556354936",
+      "area": "Ammerpet",
+      "landmark": "S R Nagar",
+      "pincode": "761118",
+      "id": "xHGPIBUwNn8"
+    }
+  ],
+  "orders": [
+    {
+      "orderId": "32408",
+      "products": [
+        {
+          "id": 2,
+          "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
+          "title": "Mens Casual Premium Slim Fit T-Shirts ",
+          "price": 22.3,
+          "quantity": 1
+        }
+      ],
+      "payment": "Cash on Delivery",
+      "status": "Confirmed",
+      "orderDate": "Fri May 15 2026",
+      "deliveryDate": "Wed May 20 2026",
+      "id": "Jpv6e3qNYVA"
+    },
+    {
+      "orderId": "32408",
+      "products": [
+        {
+          "id": 1,
+          "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
+          "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+          "price": 109.95,
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
+          "title": "Mens Casual Premium Slim Fit T-Shirts ",
+          "price": 22.3,
+          "quantity": 1
+        }
+      ],
+      "payment": "Cash on Delivery",
+      "status": "Confirmed",
+      "orderDate": "Fri May 15 2026",
+      "deliveryDate": "Wed May 20 2026",
+      "id": "e1n7t1yDyfA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
