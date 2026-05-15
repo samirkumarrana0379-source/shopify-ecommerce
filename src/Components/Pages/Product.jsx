@@ -29,7 +29,7 @@ const Product = () => {
     .catch(async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/products"
+          "https://shopify-ecommerce-lbi0.onrender.com/products"
         );
 
         const foundProduct = data.find(

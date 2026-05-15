@@ -19,7 +19,7 @@ const AddProduct = () => {
     e.preventDefault();
  
     try {
-      await axios.post("http://localhost:5000/products/add", product);
+await axios.post("https://shopify-ecommerce-lbi0.onrender.com/products/add", product);
       alert("Product added successfully");
 
       setProduct({
@@ -37,7 +37,7 @@ const AddProduct = () => {
   };
   const fetchProducts = async ()=>{
     try{
-        const {data} = await axios.get("http://localhost:5000/products");
+        const { data } = await axios.get("https://shopify-ecommerce-lbi0.onrender.com/products");
         setProducts(data);
     }catch (err){
         console.log(err);
@@ -51,7 +51,7 @@ const AddProduct = () => {
   },[])
   const handleDelete = async(id)=>{
     try{
-       await axios.delete(`http://localhost:5000/products/${id}`);
+       await axios.delete(`https://shopify-ecommerce-lbi0.onrender.com/products/${id}`);
 
     setProducts(products.filter((prod) => prod._id !== id));
 

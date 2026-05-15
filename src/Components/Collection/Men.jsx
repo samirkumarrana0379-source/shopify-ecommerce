@@ -12,7 +12,7 @@ const Men = () => {
      axios.get("https://dummyjson.com/products/category/mens-shirts"),
     axios.get("https://dummyjson.com/products/category/mens-shoes"),
     axios.get("https://dummyjson.com/products/category/mens-watches"),
-    axios.get("http://localhost:5000/products"),
+    axios.get("https://shopify-ecommerce-lbi0.onrender.com/products"),
    ])
    .then(([ shirts , shoes , watches ,backendProducts])=>{
  const menBackendProducts = backendProducts.data
