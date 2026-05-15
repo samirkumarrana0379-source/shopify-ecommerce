@@ -19,7 +19,7 @@ const Men = () => {
    .filter((product)=> product.category.toLowerCase() === "men")
    .map((product)=>({
      ...product,
-     id:product.id,
+     id:product._id,
      thumbnail: product.image,
    }))
 
