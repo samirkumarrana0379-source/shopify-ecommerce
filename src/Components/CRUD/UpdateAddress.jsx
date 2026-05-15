@@ -26,7 +26,7 @@ const UpdateAddress = ({ addressId, setShowUpdateAddress }) => {
         console.log(err);
       });
   }, [addressId]);
-  const updateAddress = (e) => {
+  const UpdateAddress = (e) => {
     e.preventDefault();
     if (
       name === "" ||
