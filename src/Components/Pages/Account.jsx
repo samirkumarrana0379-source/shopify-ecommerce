@@ -93,7 +93,7 @@ const Account = () => {
     ) : (
       orders.map((order,index)=>(
         <div
-          key={index}
+          key={order._id}
           className="p-4 rounded-xl shadow-lg bg-gray-100 text-black"
         >
           <h2 className="text-lg font-bold text-blue-950">
@@ -108,7 +108,7 @@ const Account = () => {
           <div className="mt-3 space-y-2">
             {order.products?.map((item)=>(
               <div
-                key={item.id}
+                key={item.id || item._id}
                 className="flex items-center gap-3 bg-white p-2 rounded-lg"
               >
                 <img
