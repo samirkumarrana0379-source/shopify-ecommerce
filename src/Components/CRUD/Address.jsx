@@ -75,7 +75,7 @@ const handleRazorpayPayment = async () => {
   const handleDelete = (id) => {
    axios.delete(`https://shopify-ecommerce-lbi0.onrender.com/address/${id}`)
     .then(() => {
-      setAddresses(prev => prev.filter(address => address.id !== id));
+      setAddresses(prev => prev.filter(address => address._id !== id));
 
       if(selectedAddressId === id){
         setSelectedAddressId(null);
@@ -107,7 +107,7 @@ const handleRazorpayPayment = async () => {
       {showUpdateAddress && (
         <UpdateAddress addressId={addressId} setShowUpdateAddress={setShowUpdateAddress} />
       )}
-      <div className="h-8/10 w-3/7 flex flex-col justify-start items-center gap-4 shadow-lg pb-2">
+      <div className="w-[95%] sm:w-[80%] md:w-[60%] lg:w-[45%] flex flex-col justify-start items-center gap-4 shadow-lg pb-2">
         <div className="w-full flex justify-between items-center p-2">
           <p className="text-xl font-bold text-neutral-800">Saved Address</p>
           <NavLink>
@@ -119,13 +119,13 @@ const handleRazorpayPayment = async () => {
             </button>
           </NavLink>
         </div>
-        {addresses.map(({ id, name, mobile, area, landmark, pincode }) => {
+        {addresses.map(({ _id, name, mobile, area, landmark, pincode }) => {
           return (
             <div
-              key={id}
-              className="h-35 w-9/10 shadow-md shadow-neutral-400 text-neutral-700 font-semibold flex flex-col justify-between text-sm rounded-xl" >
+              key={_id}
+              className="w-full min-h-[150px] shadow-md shadow-neutral-400 text-neutral-700 font-semibold flex flex-col justify-between text-sm rounded-xl p-2" >
                 <div className="flex items-center gap-2 p-2">
-                  <input type="radio" name="address" checked={selectedAddressId === id}  onChange={()=> setSelectedAddressId(id)}/>
+                  <input type="radio" name="address" checked={selectedAddressId === _id}  onChange={()=> setSelectedAddressId(_id)}/>
                  <h2 className="text-lg font-bold text-neutral-800">{name}</h2>
                 </div>
 
@@ -136,12 +136,12 @@ const handleRazorpayPayment = async () => {
               <div className="w-full flex border-t border-t-neutral-300 text-blue-950 font-semibold">
                 <button
                   className="w-1/2 p-3 border-r border-r-neutral-300 cursor-pointer"
-                  onClick={() => handleUpdate(id)}
+                  onClick={() => handleUpdate(_id)}
                 >
                   Edit
                 </button>
                 <button className="w-1/2 p-3 cursor-pointer"
-                  onClick={() => handleDelete(id)}>delete</button>
+                  onClick={() => handleDelete(_id)}>delete</button>
               </div>
             </div>
           );

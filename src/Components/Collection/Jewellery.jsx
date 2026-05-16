@@ -28,23 +28,37 @@ const Jewellery = () => {
    },[]);
 
    const addToCart = (product) => {
-    const exists = cartProducts.some(
-      (item) => item.id === product.id
-    )
-    if(!exists){
-      setCartProducts([
-        ...cartProducts,
-        { ...product, quantity:1},
-      ])
-    }
-   }
-  const removeFromCart = (id) =>{
-    setCartProducts(
-      cartProducts.filter(
-        (item) => item.id !== id
-      )
+  const exists = cartProducts.some((item) => item.id === product.id);
+
+  if (!exists) {
+
+    const updatedCart = [
+      ...cartProducts,
+      { ...product, quantity: 1 }
+    ];
+
+    setCartProducts(updatedCart);
+
+    localStorage.setItem(
+      "cartProducts",
+      JSON.stringify(updatedCart)
     );
-  };
+  }
+};
+  
+const removeFromCart = (id) => {
+
+  const updatedCart = cartProducts.filter(
+    (item) => item.id !== id
+  );
+
+  setCartProducts(updatedCart);
+
+  localStorage.setItem(
+    "cartProducts",
+    JSON.stringify(updatedCart)
+  );
+};
 
   const addToWishlist = (product)=>{
     const exists  = wishlist.some((item)=> item.id === product.id);
@@ -70,7 +84,7 @@ const Jewellery = () => {
               <NavLink to={`/product/${product.id}`}>
               <img src={product.thumbnail} alt={product.title} className="h-32 sm:h-40 md:h-52 w-full object-contain" />
               <h2 className="font-semibold mt-2 text-xs sm:text-sm md:text-base  text-neutral-800 line-clamp-2">{product.title}</h2>
-              <p className="text-blue-950 font-bold mt-2 text-sm md:text-lg">${product.price}</p>
+              <p className="text-blue-950 font-bold mt-2 text-sm md:text-lg">₹{product.price}</p>
               </NavLink>
               {isPresent ? (
                 <button onClick={()=>removeFromCart(product.id)} className="mt-3 bg-red-500 text-white py-2 rounded-xl cursor-pointer">remove</button>

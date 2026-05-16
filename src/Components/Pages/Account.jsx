@@ -150,7 +150,7 @@ const Account = () => {
     className="md:ml-auto bg-red-500 text-white px-3 py-1 rounded-lg">Remove</button>
  <div>
 <p className="font-semibold">{item.title}</p>
- <p className="text-blue-950 font-bold">${item.price}</p>
+ <p className="text-blue-950 font-bold">₹{item.price}</p>
 </div>
 
 </div>
@@ -161,89 +161,88 @@ const Account = () => {
 
   </div>
  )}   
-                            </li>
-                            <li>
-                                <button onClick={() => setShowHelp(!showHelp)} className="cursor-pointer">
+     </li>
+           <li>
+        <button onClick={() => setShowHelp(!showHelp)} className="cursor-pointer">
                                     
-                                    <FaHeadset className=" text-blue-950 text-xl"/>
-                                     Help Center</button>
-                                {showHelp && (
-                                    <div className="mt-4 p-4 rounded-xl shadow-lg bg-gray-100 text-black space-y-3">
-                                        <h2 className="text-xl font-bold text-blue-950">Customer Support 24*7</h2>
-                                        <p>📞 Customer Care: +91 6371278059 </p>
-                                        <p>📧 Email: support@shopify.com </p>
-                                       <p>🕒 Support Time: 9 AM - 9 PM</p>
-                                    <div>
-                                            <h3 className="font-bold mb-2">
-                                                Guidelines
-                                            </h3>
-                                            <ul className="list-disc ml-5 space-y-1">
+      <FaHeadset className=" text-blue-950 text-xl"/>
+       Help Center</button>
+     {showHelp && (
+     <div className="mt-4 p-4 rounded-xl shadow-lg bg-gray-100 text-black space-y-3">
+    <h2 className="text-xl font-bold text-blue-950">Customer Support 24*7</h2>
+    <p>📞 Customer Care: +91 6371278059 </p>
+    <p>📧 Email: support@shopify.com </p>
+    <p>🕒 Support Time: 9 AM - 9 PM</p>
+ <div>
+<h3 className="font-bold mb-2">
+    Guidelines
+</h3>
+ <ul className="list-disc ml-5 space-y-1">
 
-                                                <li>Products can be returned within 7 days after delivery.</li>
-                                                <li>Please keep the original invoice and product packaging safe.</li>
-                                                <li>Damaged or wrong products can be replaced free of cost.</li>
-                                                <li>Refund amount will be credited within 5-7 working days.</li>
-                                                <li>Do not share your OTP, password or bank details with anyone.</li>
-                                                <li>For payment related issues contact customer support immediately.</li>
-                                                <li>Cash on Delivery is available for selected locations only.</li>
-                                                <li>Delivery time may vary during holidays and festival seasons.</li>
-                                                <li>Customers are requested to check product details before placing order.</li>
-                                                <li>For more help contact our 24×7 customer care support.</li>
+    <li>Products can be returned within 7 days after delivery.</li>
+    <li>Please keep the original invoice and product packaging safe.</li>
+    <li>Damaged or wrong products can be replaced free of cost.</li>
+    <li>Refund amount will be credited within 5-7 working days.</li>
+    <li>Do not share your OTP, password or bank details with anyone.</li>
+    <li>For payment related issues contact customer support immediately.</li>
+    <li>Cash on Delivery is available for selected locations only.</li>
+    <li>Delivery time may vary during holidays and festival seasons.</li>
+<li>Customers are requested to check product details before placing order.</li>
+    <li>For more help contact our 24×7 customer care support.</li>
 
-                                            </ul>
-                                        </div>
-                                    </div>
-                                )}
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="shadow-md rounded-xl p-4">
-                       <h2 className="text-xl font-bold text-blue-950 mb-3">
-                        Finance Option
-                       </h2>
-                       <ul className="space-y-2 font-semibold text-neutral-700">
-                        <li>
-                            <button onClick={() => setShowFinance(!showFinance)} className="cursor-pointer flex-items-center gap-2">
-                                <FaWallet className="text-green-600"/>
-                                Finance Details
-                            </button>
-                            {showFinance && (
-                                <div className="mt-4 p-4 rounded-xl shadow-lg bg-gray-100 text-black space-y-3">
-                                    <h2 className="text-xl font-bold text-green-700">
-                                        Finance Information
-                                    </h2>
-                                    <p>💳 Total Payments: ₹24,500</p>
-                                    <p>🛒 Orders Completed: 12</p>
-                                    <p>💰 Wallet Balance: ₹1,250</p>
-                                    <p>🏦 Payment Method: Cash on Delivery</p>
-                                    <p>📅 Last Payment Date: 10 May 2026</p>
-                                    <p>🔒 Your payment details are secure and encrypted.</p>
-                                </div>
-                            )}
-                        </li>
-                        <li>
-                            <button onClick={() => setShowCards(!showCards)} className="cursor-pointer flex-items-center gap-2">
-                                <FaCreditCard className="text-blue-950"/>
-                                Saved Credit / Debit Cards
-                            </button>
-                            {showCards && (
-                                <div className="mt-4 space-y-4">
-                                    <div className="p-4 rounded-2xl shadow-lg bg-gradient-to-r from-blue-950 to-blue-700 text-white">
-                                        <h2 className="text-lg font-bold">VISA Card</h2>
-                                        <p className="m-2 tracking-widest">**** **** **** 4587</p>
-                                        <div className="flex justify-between mt-4 text-sm">
-                                            <p>Samir Rana</p>
-                                            <p>12/40</p>
-                                        </div>
-                                    </div>
-                                    <div className="p-4 rounded-2xl shadow-lg bg-gradient-to-r from-gray-800 to-black text-white">
-                                     <h2 className="text-lg font-bold">Master Card</h2>
-                                     <p className="mt-2 tracking-widest">**** **** **** 7741</p>
-                                     <div className="flex justify-between mt-4 text-sm">
-                                        <p>Samir Rana</p>
-                                        <p>09/30</p>
-                                     </div>
-                                    </div>
+   </ul>
+ </div>
+ </div>
+)}
+</li>
+ </ul>
+</div>
+ <div className="shadow-md rounded-xl p-4">
+     <h2 className="text-xl font-bold text-blue-950 mb-3">
+     Finance Option
+     </h2>
+    <ul className="space-y-2 font-semibold text-neutral-700">
+     <li>
+    <button onClick={() => setShowFinance(!showFinance)} className="cursor-pointer flex-items-center gap-2">
+     <FaWallet className="text-green-600"/>
+      Finance Details
+     </button>
+         {showFinance && ( <div className="mt-4 p-4 rounded-xl shadow-lg bg-gray-100 text-black space-y-3">
+<h2 className="text-xl font-bold text-green-700">
+     Finance Information
+</h2>
+<p>💳 Total Payments: ₹24,500</p>
+<p>🛒 Orders Completed: 12</p>
+<p>💰 Wallet Balance: ₹1,250</p>
+<p>🏦 Payment Method: Cash on Delivery</p>
+<p>📅 Last Payment Date: 10 May 2026</p>
+<p>🔒 Your payment details are secure and encrypted.</p>
+</div>
+)}
+ </li>
+    <li>
+  <button onClick={() => setShowCards(!showCards)} className="cursor-pointer flex-items-center gap-2">
+       <FaCreditCard className="text-blue-950"/>
+             Saved Credit / Debit Cards
+ </button>
+ {showCards && (
+     <div className="mt-4 space-y-4">
+          <div className="p-4 rounded-2xl shadow-lg bg-gradient-to-r from-blue-950 to-blue-700 text-white">
+              <h2 className="text-lg font-bold">VISA Card</h2>
+             <p className="m-2 tracking-widest">**** **** **** 4587</p>
+             <div className="flex justify-between mt-4 text-sm">
+                <p>Samir Rana</p>
+        <p>12/40</p>
+      </div>
+</div>
+ <div className="p-4 rounded-2xl shadow-lg bg-gradient-to-r from-gray-800 to-black text-white">
+    <h2 className="text-lg font-bold">Master Card</h2>
+ <p className="mt-2 tracking-widest">**** **** **** 7741</p>
+ <div className="flex justify-between mt-4 text-sm">
+      <p>Samir Rana</p>
+      <p>09/30</p>
+ </div>
+ </div>
 
                                 </div>
                             )}

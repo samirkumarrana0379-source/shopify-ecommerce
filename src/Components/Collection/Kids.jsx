@@ -29,24 +29,37 @@ const Kids = () => {
   })
   
   },[])
+const addToCart = (product) => {
+  const exists = cartProducts.some((item) => item.id === product.id);
 
-  const addToCart = (product)=>{
-    const exists = cartProducts.some(
-      (item) => item.id === product.id
+  if (!exists) {
+
+    const updatedCart = [
+      ...cartProducts,
+      { ...product, quantity: 1 }
+    ];
+
+    setCartProducts(updatedCart);
+
+    localStorage.setItem(
+      "cartProducts",
+      JSON.stringify(updatedCart)
     );
-    if(!exists){
-      setCartProducts([
-        ...cartProducts,{...product,quantity:1}
-      ])
-    }
   }
-  const removeFromCart = (id) =>{
-    setCartProducts(
-      cartProducts.filter(
-        (item) => item.id !== id
-      )
-    )
-  }
+};
+ const removeFromCart = (id) => {
+
+  const updatedCart = cartProducts.filter(
+    (item) => item.id !== id
+  );
+
+  setCartProducts(updatedCart);
+
+  localStorage.setItem(
+    "cartProducts",
+    JSON.stringify(updatedCart)
+  );
+};
   return (
     <div className="p-5">
       <h1 className="text-3xl font-bold text-center mb-5 text-orange-500"> Kids's Collection</h1>

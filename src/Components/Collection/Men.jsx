@@ -38,18 +38,37 @@ const Men = () => {
   });
 }, []);
 
-  const addToCart = (product) =>{
-    const exists  = cartProducts.some((item) => item.id === product.id);
+  const addToCart = (product) => {
+  const exists = cartProducts.some((item) => item.id === product.id);
 
-    if(!exists){
-      setCartProducts([...cartProducts, { ...product, quantity:1}]);
-    }
-  };
+  if (!exists) {
 
-  const removeFromCart = (id) =>{
-  setCartProducts(cartProducts.filter((item)=> item.id !==id));
+    const updatedCart = [
+      ...cartProducts,
+      { ...product, quantity: 1 }
+    ];
 
+    setCartProducts(updatedCart);
+
+    localStorage.setItem(
+      "cartProducts",
+      JSON.stringify(updatedCart)
+    );
   }
+};
+  const removeFromCart = (id) => {
+
+  const updatedCart = cartProducts.filter(
+    (item) => item.id !== id
+  );
+
+  setCartProducts(updatedCart);
+
+  localStorage.setItem(
+    "cartProducts",
+    JSON.stringify(updatedCart)
+  );
+};
   return (
     <div className="p-5">
       <h1 className="text-3xl font-bold text-center mb-5">Men Collection</h1>

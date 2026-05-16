@@ -22,27 +22,44 @@ const Order = () => {
   deliveryDate.setDate(today.getDate() +5);
 
   useEffect(()=>{
-    if(hasSaved.current) return;
-   if(cartProducts.length === 0) return;
-    
-    hasSaved.current =true;
-    const orderData ={
-      orderId,
-      products: cartProducts,
-      payment: "Cash on Delivery",
-      status: "Confirmed",
-      orderDate: today.toDateString(),
-      deliveryDate: deliveryDate.toDateString(),
-    };
-   axios.post("https://shopify-ecommerce-lbi0.onrender.com/orders", orderData)
-    .then(()=>{
-      console.log("order saved in db.json");
-      setCartProducts([]);
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
-  },[]);
+
+  if(hasSaved.current) return;
+
+  const savedCart =
+    JSON.parse(localStorage.getItem("cartProducts")) || cartProducts;
+
+  if(savedCart.length === 0) return;
+
+  hasSaved.current = true;
+
+  const orderData = {
+    orderId,
+    products: savedCart,
+    payment: localStorage.getItem("paymentStatus") || "Paid",
+    status: "Confirmed",
+    orderDate: today.toDateString(),
+    deliveryDate: deliveryDate.toDateString(),
+  };
+
+  axios.post(
+    "https://shopify-ecommerce-lbi0.onrender.com/orders",
+    orderData
+  )
+  .then(() => {
+
+    console.log("order saved in MongoDB");
+
+    setCartProducts([]);
+
+    localStorage.removeItem("cartProducts");
+    localStorage.removeItem("orderId");
+
+  })
+  .catch((err)=>{
+    console.log(err);
+  });
+
+}, []);
   
   return (
     <div className='min-h-screen flex flex-col justify-center items-center bg-gray-100 p-5'>
