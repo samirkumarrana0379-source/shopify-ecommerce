@@ -11,15 +11,22 @@ const Address = () => {
   const [addresses, setAddresses] = useState([]);
   const [selectedAddressId, setSelectedAddressId] = useState(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-   axios.get("https://shopify-ecommerce-lbi0.onrender.com/address")
-      .then(({ data }) => {
-        setAddresses(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    const userEmail = localStorage.getItem("username");
+  axios
+    .get(`https://shopify-ecommerce-lbi0.onrender.com/address?userEmail=${userEmail}`)
+    .then(({ data }) => {
+      setAddresses(data);
+
+      if (data.length > 0) {
+        setSelectedAddressId(data[0]._id);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}, []);
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -43,15 +50,46 @@ const handleRazorpayPayment = async () => {
     key: "rzp_test_SpkAtySJUg3L6Q",
     amount: 500 * 100,
     currency: "INR",
-    name: "Shoplix",
+    name: "Shopify",
     description: "Order Payment",
+handler: function (response) {
 
-    handler: function (response) {
-      alert("Payment Successful");
-      console.log(response);
-      localStorage.setItem("paymentStatus", "Paid");
-      navigate("/order");
-    },
+  alert("Payment Successful");
+
+  console.log(response);
+
+  const newOrder = {
+    id: Date.now(),
+    paymentId: response.razorpay_payment_id,
+    addressId: selectedAddressId,
+    status: "Order Placed",
+    date: new Date().toLocaleDateString(),
+  };
+
+  const oldOrders =
+    JSON.parse(localStorage.getItem("myOrders")) || [];
+
+  localStorage.setItem(
+    "myOrders",
+    JSON.stringify([...oldOrders, newOrder])
+  );
+
+  localStorage.setItem("paymentStatus", "Paid");
+
+  localStorage.setItem(
+    "selectedAddress",
+    selectedAddressId
+  );
+
+  navigate("/order");
+},
+
+modal:{
+  ondismiss: function (){
+    alert("Payment Cancelled");
+  },
+},
+
 
     prefill: {
       name: localStorage.getItem("username") || "Customer",
@@ -73,20 +111,31 @@ const handleRazorpayPayment = async () => {
     setShowUpdateAddress(true);
   };
   const handleDelete = (id) => {
-   axios.delete(`https://shopify-ecommerce-lbi0.onrender.com/address/${id}`)
+
+  const confirmDelete = window.confirm("Are you sure?");
+
+  if(!confirmDelete){
+    return;
+  }
+
+ axios
+    .delete(`https://shopify-ecommerce-lbi0.onrender.com/address/${id}`)
     .then(() => {
-      setAddresses(prev => prev.filter(address => address._id !== id));
+
+      setAddresses(prev =>
+        prev.filter(address => address._id !== id)
+      );
 
       if(selectedAddressId === id){
         setSelectedAddressId(null);
       }
     })
     .catch(err => {
-      console.log(err)
-    })
-  }
+      console.log(err);
+    });
+}
 
-  const handleOrder = () => {
+  const handleOrder = async () => {
   if (addresses.length === 0) {
     alert("please add address first");
     return;
@@ -96,8 +145,10 @@ const handleRazorpayPayment = async () => {
     alert("please select address first");
     return;
   }
+  setLoading(true);
 
-  handleRazorpayPayment();
+ await handleRazorpayPayment();
+ setLoading(false);
 };
   return (
     <div className="min-h-[90vh] w-full flex justify-center items-center">
@@ -146,8 +197,8 @@ const handleRazorpayPayment = async () => {
             </div>
           );
         })}
-        <button disabled={showAddAddress || showUpdateAddress} onClick={handleOrder} className="py-3 px-6 bg-blue-950 text-white font-semibold rounded-2xl cursor-pointer disabled:opacity-50">
-          Order Now
+        <button disabled={loading || showAddAddress || showUpdateAddress} onClick={handleOrder} className="py-3 px-6 bg-blue-950 text-white font-semibold rounded-2xl cursor-pointer disabled:opacity-50">
+          {loading ? "Processing..." : "Order Now"}
         </button>
       </div>
     </div>

@@ -80,15 +80,12 @@ const Order = () => {
       <FaTruck className="inline text-blue-950 mr-2" />
       Expected Delivery: {deliveryDate.toDateString()}
     </p>
-    <p>Payment: Cash on Delivery</p>
+  <p>Payment: Online Payment (Razorpay)</p>
     <p>Status: Confirmed</p>
   </div>
   <NavLink to="/">
     <button className="mt-6 w-full py-3 bg-blue-950 text-white font-semibold rounded-2xl cursor-pointer hover:bg-white hover:text-blue-950 border-2 border-blue-900 duration-300">Continue Shopping </button>
   </NavLink>
- 
-
-
       </div>
     </div>
   )

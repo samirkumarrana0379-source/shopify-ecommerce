@@ -37,23 +37,25 @@ const Account = () => {
         emailNotification:false,
     });
 
-    useEffect(()=>{
-       axios.get("https://shopify-ecommerce-lbi0.onrender.com/address")
-        .then(({data})=>{
-            setAddresses(data);
-        })
-        .catch((err)=>{
-            console.log(err);
-        });
-       axios.get("https://shopify-ecommerce-lbi0.onrender.com/orders")
-        .then(({data})=>{
-            setOrders(data);
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-    },[]);
-       
+  useEffect(() => {
+
+  axios
+    .get("https://shopify-ecommerce-lbi0.onrender.com/address")
+    .then(({ data }) => {
+      setAddresses(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  const savedOrders =
+    JSON.parse(localStorage.getItem("myOrders")) || [];
+
+  setOrders(savedOrders);
+
+}, []);
+
+
     const [profile, setProfile] = useState({name: username || "",email: "",mobile: "",})
     const [devices, setDevices] = useState([
         {id: 1, name: "Windows Laptop", active: "Last Active: 5 mins", type: "laptop"},
@@ -101,7 +103,7 @@ const Account = () => {
           </h2>
 
           <p>Status: {order.status}</p>
-          <p>Payment: {order.payment}</p>
+         <p>Payment: Online Payment (Razorpay)</p>
           <p>Order Date: {order.orderDate}</p>
           <p>Delivery Date: {order.deliveryDate}</p>
 
@@ -214,7 +216,7 @@ const Account = () => {
 <p>💳 Total Payments: ₹24,500</p>
 <p>🛒 Orders Completed: 12</p>
 <p>💰 Wallet Balance: ₹1,250</p>
-<p>🏦 Payment Method: Cash on Delivery</p>
+<p>🏦 Payment Method: Online Payment (Razorpay)</p>
 <p>📅 Last Payment Date: 10 May 2026</p>
 <p>🔒 Your payment details are secure and encrypted.</p>
 </div>

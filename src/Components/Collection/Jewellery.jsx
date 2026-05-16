@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useContext,useEffect,useState } from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink , useNavigate} from "react-router-dom";
 import {CartProductContext} from "../../App";
 
 const Jewellery = () => {
    const[products, setProducts] = useState([]);
    const { cartProducts, setCartProducts,wishlist,setWishlist} = useContext(CartProductContext);
-
+    const navigate =  useNavigate();
    useEffect(()=>{
  axios
     .get("https://dummyjson.com/products?limit=0")
@@ -27,11 +27,17 @@ const Jewellery = () => {
     })
    },[]);
 
-   const addToCart = (product) => {
+  const addToCart = (product) => {
+  const isLogin = localStorage.getItem("isLogin") === "true";
+
+  if (!isLogin) {
+    navigate("/login");
+    return;
+  }
+
   const exists = cartProducts.some((item) => item.id === product.id);
 
   if (!exists) {
-
     const updatedCart = [
       ...cartProducts,
       { ...product, quantity: 1 }

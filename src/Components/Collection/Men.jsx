@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink , useNavigate} from "react-router-dom";
 import { CartProductContext } from "../../App";
 
 const Men = () => {
   const [products,setProducts] = useState([]);
   const { cartProducts, setCartProducts} = useContext(CartProductContext);
-
+ const navigate  = useNavigate();
  useEffect(() => {
   Promise.allSettled([
     axios.get("https://dummyjson.com/products/category/mens-shirts"),
@@ -39,10 +39,16 @@ const Men = () => {
 }, []);
 
   const addToCart = (product) => {
+  const isLogin = localStorage.getItem("isLogin") === "true";
+
+  if (!isLogin) {
+    navigate("/login");
+    return;
+  }
+
   const exists = cartProducts.some((item) => item.id === product.id);
 
   if (!exists) {
-
     const updatedCart = [
       ...cartProducts,
       { ...product, quantity: 1 }
@@ -84,7 +90,7 @@ const Men = () => {
 
       <h2 className="font-semibold mt-2 text-xs sm:text-sm md:text-base text-neutral-800 line-clamp-2">{product.title}</h2>
 
-      <p className="text-blue-950 font-bold mt-2 text-sm md:text-lg">${product.price}</p>
+      <p className="text-blue-950 font-bold mt-2 text-sm md:text-lg">₹{product.price}</p>
 </NavLink>
 { isPresent ? (
 

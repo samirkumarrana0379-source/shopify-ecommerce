@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useContext, useEffect, useState} from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink ,useNavigate } from "react-router-dom";
 import { CartProductContext } from "../../App";
 
 
 const Kids = () => {
   const [products, setProducts] = useState([]);
   const { cartProducts, setCartProducts} = useContext(CartProductContext);
-
+  const navigate = useNavigate();
   useEffect(()=>{
     Promise.all([
       axios.get("https://dummyjson.com/products/category/toys"), 
@@ -30,10 +30,16 @@ const Kids = () => {
   
   },[])
 const addToCart = (product) => {
+  const isLogin = localStorage.getItem("isLogin") === "true";
+
+  if (!isLogin) {
+    navigate("/login");
+    return;
+  }
+
   const exists = cartProducts.some((item) => item.id === product.id);
 
   if (!exists) {
-
     const updatedCart = [
       ...cartProducts,
       { ...product, quantity: 1 }
@@ -73,7 +79,7 @@ const addToCart = (product) => {
           <NavLink to={`/product/${product.id}`}>
           <img src={product.thumbnail} alt={product.title} className="h-32 sm:h-40 md:h-52 w-full object-contain" />
           <h2 className="font-semibold mt-2 text-xs sm:text-sm  md:text-base text-neutral-800 line-clamp-2">{product.title}</h2>
-          <p className="text-orange-500 font-bold mt-2 text-sm md:text-lg">${product.price}</p>
+          <p className="text-orange-500 font-bold mt-2 text-sm md:text-lg">₹{product.price}</p>
 
           </NavLink>
 

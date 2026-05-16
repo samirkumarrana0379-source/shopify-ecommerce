@@ -3,12 +3,13 @@ import { useState } from "react";
 
 const AddNewAddress = ({ setShowAddAddress, setAddresses, }) => {
   const [address, setAddress] = useState({
-    name: "",
-    mobile: "",
-    area: "",
-    landmark: "",
-    pincode: "",
-  });
+  name: "",
+  mobile: "",
+  area: "",
+  landmark: "",
+  pincode: "",
+  userEmail: localStorage.getItem("username"),
+});
   const { name, mobile, area, landmark, pincode } = address;
   const [otp, setOtp] = useState("");
   const [generatedOtp, setGeneratedOtp] = useState("");
