@@ -38,14 +38,14 @@ const Account = () => {
     });
 
     useEffect(()=>{
-        axios.get("http://localhost:3000/address")
+       axios.get("https://shopify-ecommerce-lbi0.onrender.com/address")
         .then(({data})=>{
             setAddresses(data);
         })
         .catch((err)=>{
             console.log(err);
         });
-        axios.get("http://localhost:3000/orders")
+       axios.get("https://shopify-ecommerce-lbi0.onrender.com/orders")
         .then(({data})=>{
             setOrders(data);
         })

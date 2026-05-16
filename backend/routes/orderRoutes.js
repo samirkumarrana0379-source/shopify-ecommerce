@@ -3,7 +3,7 @@ const Order = require("../models/Order");
 
 const router = express.Router();
 
-// Save order
+
 router.post("/add", async (req, res) => {
   try {
     const order = new Order(req.body);
@@ -16,7 +16,7 @@ router.post("/add", async (req, res) => {
   }
 });
 
-// Get all orders
+
 router.get("/", async (req, res) => {
   try {
     const orders = await Order.find();

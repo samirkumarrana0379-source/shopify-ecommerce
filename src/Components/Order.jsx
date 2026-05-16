@@ -34,7 +34,7 @@ const Order = () => {
       orderDate: today.toDateString(),
       deliveryDate: deliveryDate.toDateString(),
     };
-    axios.post("http://localhost:3000/orders", orderData)
+   axios.post("https://shopify-ecommerce-lbi0.onrender.com/orders", orderData)
     .then(()=>{
       console.log("order saved in db.json");
       setCartProducts([]);

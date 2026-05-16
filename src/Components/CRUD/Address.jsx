@@ -12,8 +12,7 @@ const Address = () => {
   const [selectedAddressId, setSelectedAddressId] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/address")
+   axios.get("https://shopify-ecommerce-lbi0.onrender.com/address")
       .then(({ data }) => {
         setAddresses(data);
       })
@@ -74,7 +73,7 @@ const handleRazorpayPayment = async () => {
     setShowUpdateAddress(true);
   };
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3000/address/${id}`)
+   axios.delete(`https://shopify-ecommerce-lbi0.onrender.com/address/${id}`)
     .then(() => {
       setAddresses(prev => prev.filter(address => address.id !== id));
 

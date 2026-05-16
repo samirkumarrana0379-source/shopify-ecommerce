@@ -17,7 +17,7 @@ const UpdateAddress = ({ addressId, setShowUpdateAddress }) => {
   const [oldMobile, setOldMobile] = useState("");
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/address/${addressId}`)
+      .get(`https://shopify-ecommerce-lbi0.onrender.com/address/${addressId}`)
       .then(({ data }) => {
         setAddress(data);
         setOldMobile(data.mobile);
@@ -26,7 +26,7 @@ const UpdateAddress = ({ addressId, setShowUpdateAddress }) => {
         console.log(err);
       });
   }, [addressId]);
-  const UpdateAddress = (e) => {
+  const updateAddress = (e) => {
     e.preventDefault();
     if (
       name === "" ||
@@ -50,7 +50,7 @@ const UpdateAddress = ({ addressId, setShowUpdateAddress }) => {
 }
 
       axios
-        .put(`http://localhost:3000/address/${addressId}`, address)
+        .put(`https://shopify-ecommerce-lbi0.onrender.com/address/${addressId}`, address)
         .then(({ data }) => {
           console.log(data);
           setShowUpdateAddress((prev) => !prev);

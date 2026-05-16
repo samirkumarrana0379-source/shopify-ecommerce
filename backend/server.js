@@ -5,6 +5,8 @@ const cors = require("cors");
 require("dotenv").config();
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const addressRoutes = require("./routes/addressRoutes");
+
 
 const app = express();
 
@@ -13,6 +15,7 @@ app.use(express.json());
 
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
+app.use("/address", addressRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)

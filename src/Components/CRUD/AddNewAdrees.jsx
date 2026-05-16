@@ -42,7 +42,7 @@ const AddNewAddress = ({ setShowAddAddress, setAddresses, }) => {
       return;
     }
       axios
-        .post("http://localhost:3000/address", address)
+        .post("https://shopify-ecommerce-lbi0.onrender.com/address", address)
         .then(({ data }) => {
           alert("Address saved successfully");
 
