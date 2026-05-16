@@ -72,28 +72,54 @@ const handleRazorpayPayment = async () => {
 
   paymentObject.open();
 };
-
-
     const { cartProducts , setCartProducts} = useContext(CartProductContext);
-    const handleRemoveFromCart = (id) =>{
-        setCartProducts(cartProducts.filter((e)=> e.id !== id));
-    };
-    const updateCart = (type, id)=>{
-        setCartProducts((prev)=>{
-            if(type === "dec"){
-                return prev.map((item)=> item.id === id ? {...item, quantity: item.quantity - 1} : item,) 
-                .filter((item)=> item.quantity > 0);
-            }
-            if(type === "inc"){
-                return prev.map((item)=>
-                    item.id === id ? {...item, quantity: item.quantity +1} :
-                item,
-                );
-            }
-            return prev;
-        })
+   const handleRemoveFromCart = (id) => {
+
+  const updatedCart = cartProducts.filter(
+    (e) => e.id !== id
+  );
+
+  setCartProducts(updatedCart);
+
+  localStorage.setItem(
+    "cartProducts",
+    JSON.stringify(updatedCart)
+  );
+};
+  const updateCart = (type, id) => {
+
+  setCartProducts((prev) => {
+
+    let updatedCart = prev;
+
+    if (type === "dec") {
+
+      updatedCart = prev
+        .map((item) =>
+          item.id === id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0);
     }
 
+    if (type === "inc") {
+
+      updatedCart = prev.map((item) =>
+        item.id === id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    }
+
+    localStorage.setItem(
+      "cartProducts",
+      JSON.stringify(updatedCart)
+    );
+
+    return updatedCart;
+  });
+};
     const totalAmount = cartProducts.reduce(
         (total,item) => total + item.price * item.quantity,0,
     );
