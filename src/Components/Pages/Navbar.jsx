@@ -180,7 +180,9 @@ const Navbar = () => {
           </NavLink>
 
           <button
-            onClick={() => setDarkMode(!darkMode)}
+                 onClick={() => {
+                 setDarkMode(!darkMode);
+              setShowMenu(false);}}
             className="bg-blue-950 text-white py-2 rounded-xl font-semibold"
           >
             {darkMode ? " ☀️ Light Mode" : "🌙 Dark Mode"}

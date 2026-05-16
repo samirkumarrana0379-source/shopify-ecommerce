@@ -21,6 +21,54 @@ const Address = () => {
         console.log(err);
       });
   }, []);
+const loadRazorpayScript = () => {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+
+    document.body.appendChild(script);
+  });
+};
+const handleRazorpayPayment = async () => {
+  const res = await loadRazorpayScript();
+
+  if (!res) {
+    alert("Razorpay SDK failed to load");
+    return;
+  }
+
+  const options = {
+    key: "rzp_test_SpkAtySJUg3L6Q",
+    amount: 500 * 100,
+    currency: "INR",
+    name: "Shoplix",
+    description: "Order Payment",
+
+    handler: function (response) {
+      alert("Payment Successful");
+      console.log(response);
+      localStorage.setItem("paymentStatus", "Paid");
+      navigate("/order");
+    },
+
+    prefill: {
+      name: localStorage.getItem("username") || "Customer",
+      email: localStorage.getItem("username") || "customer@gmail.com",
+      contact: "9999999999",
+    },
+
+    theme: {
+      color: "#172554",
+    },
+  };
+
+  const paymentObject = new window.Razorpay(options);
+  paymentObject.open();
+};
+
   const handleUpdate = (id) => {
     setAddressId(id);
     setShowUpdateAddress(true);
@@ -39,19 +87,19 @@ const Address = () => {
     })
   }
 
-  const handleOrder = () =>{
-    if(addresses.length === 0){
-      alert("please add address first")
-      return;
+  const handleOrder = () => {
+  if (addresses.length === 0) {
+    alert("please add address first");
+    return;
+  }
 
-    }
-     if(selectedAddressId === null){
-          alert("please select address first")
-          return;
-    }
-        navigate("/order");
-    
-  };
+  if (selectedAddressId === null) {
+    alert("please select address first");
+    return;
+  }
+
+  handleRazorpayPayment();
+};
   return (
     <div className="min-h-[90vh] w-full flex justify-center items-center">
       {showAddAddress && (

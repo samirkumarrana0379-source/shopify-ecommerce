@@ -7,34 +7,36 @@ const Men = () => {
   const [products,setProducts] = useState([]);
   const { cartProducts, setCartProducts} = useContext(CartProductContext);
 
-  useEffect(()=>{
-   Promise.all([
-     axios.get("https://dummyjson.com/products/category/mens-shirts"),
+ useEffect(() => {
+  Promise.allSettled([
+    axios.get("https://dummyjson.com/products/category/mens-shirts"),
     axios.get("https://dummyjson.com/products/category/mens-shoes"),
     axios.get("https://dummyjson.com/products/category/mens-watches"),
     axios.get("https://shopify-ecommerce-lbi0.onrender.com/products"),
-   ])
-   .then(([ shirts , shoes , watches ,backendProducts])=>{
- const menBackendProducts = backendProducts.data
-   .filter((product)=> product.category.toLowerCase() === "men")
-   .map((product)=>({
-     ...product,
-     id:product._id,
-     thumbnail: product.image,
-   }))
+  ]).then((results) => {
+    let allProducts = [];
 
-    const allProducts = [
-      ...shirts.data.products,
-      ...shoes.data.products,
-      ...watches.data.products,
-      ...menBackendProducts,
-    ];
+    results.forEach((res, index) => {
+      if (res.status === "fulfilled") {
+        if (index === 3) {
+          const menBackendProducts = res.value.data
+            .filter((product) => product.category?.toLowerCase() === "men")
+            .map((product) => ({
+              ...product,
+              id: product._id,
+              thumbnail: product.image,
+            }));
+
+          allProducts = [...allProducts, ...menBackendProducts];
+        } else {
+          allProducts = [...allProducts, ...res.value.data.products];
+        }
+      }
+    });
+
     setProducts(allProducts);
-   })
-   .catch((err)=>{
-    console.log(err);
-   })
-  },[]);
+  });
+}, []);
 
   const addToCart = (product) =>{
     const exists  = cartProducts.some((item) => item.id === product.id);

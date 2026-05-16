@@ -219,9 +219,13 @@ return (
             <span className="font-bold">Total amount</span> <span>${totalPayableAmount}</span>
           </p>
           
-            <button onClick={handleRazorpayPayment} className="w-full md:w-auto py-3 px-6 m-2 bg-blue-950 text-white font-semibold rounded-2xl float-end cursor-pointer">
-              Pay Now
-            </button>
+           <NavLink to="/address">
+  <button
+    className="w-full md:w-auto py-3 px-6 m-2 bg-blue-950 text-white font-semibold rounded-2xl float-end cursor-pointer"
+  >
+    Proceed
+  </button>
+</NavLink>
         
         </div>
          </div>

@@ -119,7 +119,7 @@ const Account = () => {
 
                 <div>
                   <p className="font-semibold">{item.title}</p>
-                  <p>${item.price}</p>
+                  <p>₹{item.price}</p>
                   <p>Qty: {item.quantity}</p>
                 </div>
               </div>
