@@ -9,6 +9,7 @@ const Account = () => {
 
     const navigate = useNavigate();
     const username = localStorage.getItem("username");
+    const userEmail = localStorage.getItem("username");
     const {wishlist, setWishlist} = useContext(CartProductContext);
     const [showOrders, setShowOrders] = useState(false);
     const [showWishlist, setShowWishlist] = useState(false);
@@ -40,7 +41,7 @@ const Account = () => {
   useEffect(() => {
 
   axios
-    .get("https://shopify-ecommerce-lbi0.onrender.com/address")
+   .get(`https://shopify-ecommerce-lbi0.onrender.com/address?userEmail=${userEmail}`)
     .then(({ data }) => {
       setAddresses(data);
     })
@@ -257,7 +258,7 @@ const Account = () => {
                                     <div className="mt-4 p-4 rounded-xl shadow-lg bg-gray-100 text-black space-y-3">
                                         <h2 className="text-xl font-bold text-green-700">Payment Information</h2>
                                         <p> 💵 Preferred Currency: INR (₹)</p>
-                                        <p> 💳 Payment Method: Cash on Delivery</p>
+                                        <p> 💳 Payment Method: Online Payment (Razorpay)</p>
                                         <p> 🏦 UPI Payments Supported</p>
                                         <p> 🌍 International Payments Available</p>
                                         <p> 🔒 Secure Encrypted Transactions</p>

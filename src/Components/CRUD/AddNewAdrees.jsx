@@ -46,11 +46,23 @@ const AddNewAddress = ({ setShowAddAddress, setAddresses, }) => {
         .post("https://shopify-ecommerce-lbi0.onrender.com/address", address)
         .then(({ data }) => {
           alert("Address saved successfully");
+   setAddresses((prev) => {
 
-             setAddresses((prev) => [...prev, data]);
-          console.log(data);
-            setShowAddAddress(prev => !prev);
-        })
+      const userEmail =
+        localStorage.getItem("username");
+
+      const updatedAddresses = [...prev, data];
+
+      return updatedAddresses.filter(
+        (address) =>
+          address.userEmail === userEmail
+      );
+    });
+
+    console.log(data);
+
+    setShowAddAddress((prev) => !prev);
+  })
         .catch((err) => {
           console.log(err);
         });  
