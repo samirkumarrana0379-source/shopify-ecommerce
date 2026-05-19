@@ -39,6 +39,7 @@ const Account = () => {
     });
 
   useEffect(() => {
+    const userEmail = localStorage.getItem("username");
 
   axios
    .get(`https://shopify-ecommerce-lbi0.onrender.com/address?userEmail=${userEmail}`)
