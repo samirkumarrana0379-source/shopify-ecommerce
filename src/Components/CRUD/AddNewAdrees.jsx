@@ -33,7 +33,7 @@ const AddNewAddress = ({ setShowAddAddress, setAddresses, }) => {
       return;
     }
     
-    if (!/^\d{10}$/.test(mobile)) {
+    if (!/^\d{10}₹/.test(mobile)) {
   alert("Mobile number must be exactly 10 digits");
   return;
 }
@@ -69,7 +69,7 @@ const AddNewAddress = ({ setShowAddAddress, setAddresses, }) => {
   };
   const handleChange = ({ target: {name, value}}) =>{
     if(name === "mobile"){
-      if(!/^\d{0,10}$/.test(value))
+      if(!/^\d{0,10}₹/.test(value))
          return;
       
     }
@@ -84,7 +84,7 @@ const AddNewAddress = ({ setShowAddAddress, setAddresses, }) => {
    const newOtp = Math.floor(1000+ Math.random()* 9000).toString();
    setGeneratedOtp(newOtp);
    setIsOtpSent(true);
-   alert(`Your OTP is ${newOtp}`);
+   alert(`Your OTP is ₹{newOtp}`);
 
   };
 

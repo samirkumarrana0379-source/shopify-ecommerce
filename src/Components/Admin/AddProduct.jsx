@@ -51,7 +51,7 @@ await axios.post("https://shopify-ecommerce-lbi0.onrender.com/products/add", pro
   },[])
   const handleDelete = async(id)=>{
     try{
-       await axios.delete(`https://shopify-ecommerce-lbi0.onrender.com/products/${id}`);
+       await axios.delete(`https://shopify-ecommerce-lbi0.onrender.com/products/₹{id}`);
 
     setProducts(products.filter((prod) => prod._id !== id));
 
@@ -94,7 +94,7 @@ await axios.post("https://shopify-ecommerce-lbi0.onrender.com/products/add", pro
           <img src={prod.image} alt={prod.title} className="h-40 object-contain" />
 
           <h2 className="font-bold text-lg">{prod.title}</h2>
-          <p className="text-blue-950 font-semibold">${prod.price}</p>
+          <p className="text-blue-950 font-semibold">₹{prod.price}</p>
 
           <button
             onClick={() => handleDelete(prod._id)}

@@ -22,7 +22,7 @@ const Product = () => {
   
   useEffect(() => {
   axios
-    .get(`https://dummyjson.com/products/${id}`)
+    .get(`https://dummyjson.com/products/₹{id}`)
     .then(({ data }) => {
       setState(data);
     })
@@ -104,7 +104,7 @@ const Product = () => {
   <div className="font-semibold text-neutral-800 flex justify-start items-center">
     Rating: <Stars rating={state.rating || 0}/>
   </div>
-  <b className="text-2xl font-bold">${state.price}</b>
+  <b className="text-2xl font-bold">₹{state.price}</b>
   {isPresent ? (
     <button className="border-2 font-semibold border-blue-950 p-3 rounded-xl hover:bg-blue-950 hover:text-white hover:border-white cursor-pointer duration-300 " onClick={()=> removeFromCart(state.id || state._id)}> Remove from cart </button>
   ) :(

@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`h-[10vh] w-full flex items-center justify-between gap-2 px-3 md:px-6 text-sm font-semibold sticky top-0 z-50 shadow-md ${
+      className={`h-[10vh] w-full flex items-center justify-between gap-2 px-3 md:px-6 text-sm font-semibold sticky top-0 z-50 shadow-md ₹{
         darkMode
           ? "bg-gray-900 text-white"
           : "bg-white text-neutral-800"
@@ -52,7 +52,7 @@ const Navbar = () => {
         placeholder="Search..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className={`md:hidden flex-1 max-w-[180px] border rounded-xl px-3 py-2 outline-none text-sm ${
+        className={`md:hidden flex-1 max-w-[180px] border rounded-xl px-3 py-2 outline-none text-sm ₹{
           darkMode
             ? "bg-gray-800 text-white border-gray-600"
             : "bg-white text-black"
@@ -71,7 +71,7 @@ const Navbar = () => {
           placeholder="Search products..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className={`border rounded-xl px-4 py-2 outline-none w-[260px] ${
+          className={`border rounded-xl px-4 py-2 outline-none w-[260px] ₹{
             darkMode
               ? "bg-gray-800 text-white border-gray-600"
               : "bg-white text-black"
@@ -114,7 +114,7 @@ const Navbar = () => {
               className="flex items-center gap-1 cursor-pointer"
             >
               <FaUserCircle
-                className={`text-3xl ${
+                className={`text-3xl ₹{
                   darkMode ? "text-white" : "text-blue-950"
                 }`}
               />
@@ -123,7 +123,7 @@ const Navbar = () => {
 
             {showProfile && (
               <div
-                className={`absolute right-0 mt-3 w-[220px] shadow-2xl rounded-2xl p-4 z-50 ${
+                className={`absolute right-0 mt-3 w-[220px] shadow-2xl rounded-2xl p-4 z-50 ₹{
                   darkMode
                     ? "bg-gray-800 text-white"
                     : "bg-white text-black"
@@ -181,7 +181,7 @@ const Navbar = () => {
 
       {showMenu && (
         <div
-          className={`absolute top-[10vh] left-0 w-full shadow-md p-5 flex flex-col gap-4 md:hidden ${
+          className={`absolute top-[10vh] left-0 w-full shadow-md p-5 flex flex-col gap-4 md:hidden ₹{
             darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
           }`}
         >

@@ -17,10 +17,13 @@ const Address = () => {
   axios
     .get(`https://shopify-ecommerce-lbi0.onrender.com/address?userEmail=${userEmail}`)
     .then(({ data }) => {
-      setAddresses(data);
+      const filteredAddress = data.filter(
+        (address) => address.userEmail === userEmail
+      );
+      setAddresses(filteredAddress);
 
-      if (data.length > 0) {
-        setSelectedAddressId(data[0]._id);
+      if (filteredAddress.length > 0) {
+        setSelectedAddressId(filteredAddress[0]._id);
       }
     })
     .catch((err) => {

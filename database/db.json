@@ -76,5 +76,5 @@
       "id": "e1n7t1yDyfA"
     }
   ],
-  "$schema": "./node_modules/json-server/schema.json"
+  "₹schema": "./node_modules/json-server/schema.json"
 }

@@ -70,7 +70,7 @@ const filteredProducts = state.filter((item) => {
   </select>
 
   <div className="flex flex-col">
-    <label>Max Price: ${priceFilter}</label>
+    <label>Max Price: ₹{priceFilter}</label>
 
     <input
       type="range"
@@ -127,7 +127,7 @@ const filteredProducts = state.filter((item) => {
                     <img className="h-24 md:h-40 lg:h-52 w-full object-contain " src={image || null} alt="" />
                     <p className="text-[11px] md:text-base truncate text-neutral-900">{title}</p>
                    <div className="flex flex-col md:flex-row justify-between items-center py-2 text-[11px] md:text-sm">
-                    <p className="text-neutral-800">Price : ${price}</p>
+                    <p className="text-neutral-800">Price : ₹{price}</p>
                     <div>
                         <Stars rating = {rating.rate}/>
 
