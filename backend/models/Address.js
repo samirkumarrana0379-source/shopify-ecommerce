@@ -25,6 +25,7 @@ const addressSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userEmail:{type: String, required:true},
 });
 
 module.exports = mongoose.model("Address", addressSchema);

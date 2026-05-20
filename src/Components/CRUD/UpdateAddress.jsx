@@ -72,7 +72,7 @@ const UpdateAddress = ({ addressId, setShowUpdateAddress }) => {
   const newOtp = Math.floor(1000 + Math.random() * 9000).toString();
   setGeneratedOtp(newOtp);
   setIsOtpSent(true);
-  alert(`Your OTP is ₹{newOtp}`);
+  alert(`Your OTP is ${newOtp}`);
 };
 
 const verifyOtp = () => {

@@ -248,96 +248,92 @@ const Account = () => {
  </div>
  </div>
 
-                                </div>
-                            )}
-                        </li>
-                        <li>
-                            <button onClick={() => setShowPayments(!showPayments)} className="cursor-pointer flex items-center gap-2">
-                                <FaMoneyBillWave className="text-green-600"/>
-                                Payments & Currencies</button>
-                                {showPayments && (
-                                    <div className="mt-4 p-4 rounded-xl shadow-lg bg-gray-100 text-black space-y-3">
-                                        <h2 className="text-xl font-bold text-green-700">Payment Information</h2>
-                                        <p> 💵 Preferred Currency: INR (₹)</p>
-                                        <p> 💳 Payment Method: Online Payment (Razorpay)</p>
-                                        <p> 🏦 UPI Payments Supported</p>
-                                        <p> 🌍 International Payments Available</p>
-                                        <p> 🔒 Secure Encrypted Transactions</p>
-                                        <p>📅 Last Payment: ₹2,499 on 10 May 2026</p>
-
-                                    </div>
-                                )}
-                        </li>
-                       </ul>
-                    </div>
-                    <div className="shadow-md rounded-xl p-4">
-                        <h2 className="text-xl font-bold text-blue-950 mb-3">
-                             Account Settings
-                        </h2>
-                        <ul className="space-y-2 font-semibold text-neutral-700">
-                            <li>
-                            <button onClick={()=> setShowAbout(!showAbout)} className="cursor-pointer flex items-center gap-2">
-                                <FaUserCircle className="text-blue-950 text-xl"/>
-                                About</button>
-                            {showAbout && (
-                                <div className="mt-4 p-4 rounded-xl shadow-lg bg-gray-100 text-black space-y-3">
-                                <h2 className="text-xl font-bold text-blue-950">About Shopify</h2>
-                                <p> Shopify is an online shopping platform
-                                    where customers can buy Men, Women,
-                                    Kids and Jewellery products easily.
-                                </p>
-                                <p>🛍️ Easy shopping experience with secure payments.</p>
-                                <p>🚚 Fast delivery and order tracking available.</p>
-                                <p>❤️ Wishlist and cart management supported.</p>
-                                <p>🔒 Safe and secure user authentication system.</p>
-                                <p>📱 Mobile friendly responsive ecommerce website.</p>
-                                <p>🌍 Customers can shop anytime from anywhere.</p>
-                                <p>💳 Multiple payment methods supported.</p>
-                                <p>📞 24×7 customer support available.</p>
-                             </div>
-                            )}
-
-                            </li>
-                            <li>
-                                <button onClick={()=> setShowDevices(!showDevices)} 
-                                    className="cursor-pointer flex items-center gap-2">
-                                        <FaLaptop className="text-blue-950 text-xl"/>
-                                    Manage Devices
-                                </button>
-                                {showDevices && (
-                                    <div>
-                                        {devices.map((devices)=>(
-                                            <div key={devices.id} className="flex items-center justify-between bg-white p-3 rounded-xl shadow-sm">
-                                                <div className="flex items-center gap-3">
-                                                    {devices.type === "laptop" ? (
-                                                        <FaLaptop className="text-2xl text-blue-950"/>
-                                                    ):(
-                                                        <FaMobileAlt className="text-2xl text-green-600"/>
-                                                    )
-                                                }
-                                                <div>
-                                                     <p className="font-semibold">{devices.name}</p>
-                                                     <p className="text-sm text-gray-500">{devices.active}</p>
-                                                </div>
-                                                </div>
-                                                <button onClick={()=> removeDevice(devices.id)} className="bg-red-500 text-white px-3 py-1 rounded-lg">
-                                                    remove
-                                                </button>
-                            
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </li>
-                            <li>
-                                <NavLink to="/profile">Edit Profile</NavLink>
-                            </li>
-                            <li>
-                                <button onClick={()=> setShowAddress(!showAddress)} className="cursor-pointer flex items-center gap-2">
-                                   <FaMapMarkedAlt className="text-red-500 text-xl"/>
-                                   Saved Addresses
-                                </button>
-                                {showAddress && (
+  </div>
+)}
+</li>
+<li>
+ <button onClick={() => setShowPayments(!showPayments)} className="cursor-pointer flex items-center gap-2">
+    <FaMoneyBillWave className="text-green-600"/>
+    Payments & Currencies</button>
+     {showPayments && (
+<div className="mt-4 p-4 rounded-xl shadow-lg bg-gray-100 text-black space-y-3">
+<h2 className="text-xl font-bold text-green-700">Payment Information</h2>
+<p> 💵 Preferred Currency: INR (₹)</p>
+<p> 💳 Payment Method: Online Payment (Razorpay)</p>
+<p> 🏦 UPI Payments Supported</p>
+<p> 🌍 International Payments Available</p>
+<p> 🔒 Secure Encrypted Transactions</p>
+<p>📅 Last Payment: ₹2,499 on 10 May 2026</p>
+</div>
+ )}
+ </li>
+</ul>
+</div>
+<div className="shadow-md rounded-xl p-4">
+<h2 className="text-xl font-bold text-blue-950 mb-3">
+  Account Settings
+</h2>
+<ul className="space-y-2 font-semibold text-neutral-700">
+<li>
+<button onClick={()=> setShowAbout(!showAbout)} className="cursor-pointer flex items-center gap-2">
+<FaUserCircle className="text-blue-950 text-xl"/>
+  About</button>
+ {showAbout && (
+ <div className="mt-4 p-4 rounded-xl shadow-lg bg-gray-100 text-black space-y-3">
+<h2 className="text-xl font-bold text-blue-950">About Shopify</h2>
+<p> Shopify is an online shopping platform
+  where customers can buy Men, Women,
+  Kids and Jewellery products easily.
+</p>
+<p>🛍️ Easy shopping experience with secure payments.</p>
+<p>🚚 Fast delivery and order tracking available.</p>
+<p>❤️ Wishlist and cart management supported.</p>
+<p>🔒 Safe and secure user authentication system.</p>
+<p>📱 Mobile friendly responsive ecommerce website.</p>
+<p>🌍 Customers can shop anytime from anywhere.</p>
+<p>💳 Multiple payment methods supported.</p>
+<p>📞 24×7 customer support available.</p>
+</div>
+ )}
+</li>
+<li>
+<button onClick={()=> setShowDevices(!showDevices)} 
+className="cursor-pointer flex items-center gap-2">
+<FaLaptop className="text-blue-950 text-xl"/>
+Manage Devices
+</button>
+ {showDevices && (
+<div>
+{devices.map((devices)=>(
+<div key={devices.id} className="flex items-center justify-between bg-white p-3 rounded-xl shadow-sm">
+<div className="flex items-center gap-3">
+{devices.type === "laptop" ? (
+<FaLaptop className="text-2xl text-blue-950"/>
+):(
+<FaMobileAlt className="text-2xl text-green-600"/>
+)}
+<div>
+<p className="font-semibold">{devices.name}</p>
+<p className="text-sm text-gray-500">{devices.active}</p>
+</div>
+</div>
+<button onClick={()=> removeDevice(devices.id)} className="bg-red-500 text-white px-3 py-1 rounded-lg">
+remove
+</button>
+</div>
+))}
+</div>
+)}
+</li>
+<li>
+<NavLink to="/profile">Edit Profile</NavLink>
+</li>
+<li>
+<button onClick={()=> setShowAddress(!showAddress)} className="cursor-pointer flex items-center gap-2">
+<FaMapMarkedAlt className="text-red-500 text-xl"/>
+ Saved Addresses
+</button>
+{showAddress && (
                                     <div className="mt-4 space-y-4">
                                          {addresses.length === 0 ? (
                                             <p className="text-gray-500">No saved addresses</p>
