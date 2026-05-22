@@ -1,12 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaYoutube, FaGift } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import {
-  MdStorefront,
-  MdCampaign,
-  MdHelpCenter,
-  MdPayment,
-} from "react-icons/md";
+import { MdStorefront, MdCampaign, MdHelpCenter, MdPayment,} from "react-icons/md";
 
 const Footer = () => {
   return (
@@ -86,11 +81,40 @@ const Footer = () => {
 
           <h3 className="text-gray-400 mt-5 mb-3">Social:</h3>
           <div className="flex gap-4 text-2xl">
-            <FaFacebook className="cursor-pointer hover:text-blue-400" />
-            <FaXTwitter className="cursor-pointer hover:text-gray-300" />
-            <FaYoutube className="cursor-pointer hover:text-red-500" />
-            <FaInstagram className="cursor-pointer hover:text-pink-400" />
-          </div>
+
+  <a
+    href="https://facebook.com/"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <FaFacebook className="cursor-pointer hover:text-blue-400 duration-300" />
+  </a>
+
+  <a
+    href="https://twitter.com/"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <FaXTwitter className="cursor-pointer hover:text-gray-300 duration-300" />
+  </a>
+
+  <a
+    href="https://youtube.com/"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <FaYoutube className="cursor-pointer hover:text-red-500 duration-300" />
+  </a>
+
+  <a
+    href="https://instagram.com/"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <FaInstagram className="cursor-pointer hover:text-pink-400 duration-300" />
+  </a>
+
+</div>
         </div>
 
         <div>
