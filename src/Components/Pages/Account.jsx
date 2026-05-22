@@ -37,32 +37,59 @@ const Account = () => {
         deliveryAlerts:true,
         emailNotification:false,
     });
-
-  useEffect(() => {
-    const userEmail = localStorage.getItem("username");
+     useEffect(() => {
+  const userEmail = localStorage.getItem("username");
 
   axios
-   .get(`https://shopify-ecommerce-lbi0.onrender.com/address?userEmail=${userEmail}`)
+    .get("https://shopify-ecommerce-lbi0.onrender.com/address")
     .then(({ data }) => {
-      setAddresses(data);
+      const userAddresses = data.filter(
+        (address) => address.userEmail === userEmail
+      );
+
+      setAddresses(userAddresses);
     })
     .catch((err) => {
       console.log(err);
     });
 
-  const savedOrders =
-    JSON.parse(localStorage.getItem("myOrders")) || [];
+  axios
+  .get("https://shopify-ecommerce-lbi0.onrender.com/orders")
+  .then(({ data }) => {
 
-  setOrders(savedOrders);
+    const userOrders = data.filter(
+      (order) => order.userEmail === userEmail
+    );
 
+    setOrders(userOrders);
+
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 }, []);
-
 
     const [profile, setProfile] = useState({name: username || "",email: "",mobile: "",})
     const [devices, setDevices] = useState([
         {id: 1, name: "Windows Laptop", active: "Last Active: 5 mins", type: "laptop"},
         {id: 2, name: "Android Mobile", active: "Last Active: Today", type: "mobile"},
     ]);
+     const handleDeleteAddress = (id) => {
+  const confirmDelete = window.confirm("Are you sure?");
+
+  if (!confirmDelete) return;
+
+  axios
+    .delete(`https://shopify-ecommerce-lbi0.onrender.com/address/${id}`)
+    .then(() => {
+      setAddresses((prev) =>
+        prev.filter((address) => address._id !== id)
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
     const handleLogout = ()=>{
         localStorage.removeItem("isLogin");
         localStorage.removeItem("username");
@@ -334,26 +361,48 @@ remove
  Saved Addresses
 </button>
 {showAddress && (
-                                    <div className="mt-4 space-y-4">
-                                         {addresses.length === 0 ? (
-                                            <p className="text-gray-500">No saved addresses</p>
-                                         ) : (
-                                            addresses.map((address)=>(
-                                   <div key={address.id} className="bg-gray-100 p-4 rounded-xl shadow-md">
-                                            <h2 className="font-bold text-blue-950">{address.name}</h2>
-                                              <p>{address.area}</p>
-                                              <p>{address.landmark}</p>
-                                              <p>Pin:{address.pincode}</p>
-                                              <p>Mobile: {address.mobile}</p>
-                                    </div>
-                                            ))
-                                         )
-                                        }
-                                    </div>
-                                )}
-                            </li>
-                            <li>
-                                <button onClick={()=> setShowLanguage(!showLanguage)} className="cursor-pointer flex items-center gap-2">
+  <div className="mt-4 space-y-4">
+    {addresses.length === 0 ? (
+      <p className="text-gray-500">No saved addresses</p>
+    ) : (
+      addresses.map((address) => (
+        <div
+          key={address._id}
+          className="bg-gray-100 p-4 rounded-xl shadow-md"
+        >
+          <h2 className="font-bold text-blue-950">
+            {address.name}
+          </h2>
+
+          <p>{address.area}</p>
+          <p>{address.landmark}</p>
+          <p>Pin: {address.pincode}</p>
+          <p>Mobile: {address.mobile}</p>
+
+       <div className="flex gap-3 mt-3">
+
+  <button
+    className="px-4 py-2 bg-blue-950 text-white rounded-xl"
+  >
+    Edit
+  </button>
+
+  <button
+    onClick={() => handleDeleteAddress(address._id)}
+    className="px-4 py-2 bg-red-500 text-white rounded-xl"
+  >
+    Delete
+  </button>
+
+</div>
+        </div>
+      ))
+    )}
+  </div>
+)}
+   </li>
+    <li>
+       <button onClick={()=> setShowLanguage(!showLanguage)} className="cursor-pointer flex items-center gap-2">
                                     <FaLanguage className="text-blue-500 text-xl"/> Select Language
                                 </button>
                                 {showLanguage && (

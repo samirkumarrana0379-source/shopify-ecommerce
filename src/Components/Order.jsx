@@ -39,8 +39,8 @@ const Order = () => {
     status: "Confirmed",
     orderDate: today.toDateString(),
     deliveryDate: deliveryDate.toDateString(),
+    userEmail: localStorage.getItem("username")
   };
-
   axios.post(
     "https://shopify-ecommerce-lbi0.onrender.com/orders",
     orderData
