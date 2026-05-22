@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FaFacebook, FaInstagram, FaYoutube, FaGift } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaYoutube, FaGift, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { MdStorefront, MdCampaign, MdHelpCenter, MdPayment,} from "react-icons/md";
 
@@ -83,7 +83,7 @@ const Footer = () => {
           <div className="flex gap-4 text-2xl">
 
   <a
-    href="https://facebook.com/"
+    href="https://facebook.com/profile.php?id=100009367984838"
     target="_blank"
     rel="noreferrer"
   >
@@ -91,7 +91,7 @@ const Footer = () => {
   </a>
 
   <a
-    href="https://twitter.com/"
+    href="https://twitter.com/SamirRana07"
     target="_blank"
     rel="noreferrer"
   >
@@ -99,7 +99,7 @@ const Footer = () => {
   </a>
 
   <a
-    href="https://youtube.com/"
+    href="https://youtube.com/@samirkumarrana4692"
     target="_blank"
     rel="noreferrer"
   >
@@ -107,12 +107,18 @@ const Footer = () => {
   </a>
 
   <a
-    href="https://instagram.com/"
+    href="https://instagram.com/samir_8989_/?hl=en"
     target="_blank"
     rel="noreferrer"
   >
     <FaInstagram className="cursor-pointer hover:text-pink-400 duration-300" />
   </a>
+
+  <a href="https://linkedin.com/in/samir-kumar-rana-a27172226?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+   target="_blank"
+    rel="noreferrer">
+      <FaLinkedinIn className="cursor-pointer hover:text-green-500 duration-300"/>
+    </a>
 
 </div>
         </div>
