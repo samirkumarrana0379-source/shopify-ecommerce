@@ -1,17 +1,15 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
+  orderId: String,
   products: Array,
-
-  totalAmount: Number,
-
-  address: Object,
-
-  paymentStatus: String,
-
-  createdAt: {
-    type: Date,
-    default: Date.now,
+  payment: String,
+  status: String,
+  orderDate: String,
+  deliveryDate: String,
+  userEmail: {
+    type: String,
+    required: true,
   },
 });
 
