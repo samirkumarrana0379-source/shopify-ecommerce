@@ -124,34 +124,27 @@ const filteredProducts = state.filter((item) => {
     }`}
   />
 </button>
-                    <img className="h-24 md:h-40 lg:h-52 w-full object-contain " src={image || null} alt="" />
-                    <p className="text-[11px] md:text-base truncate text-neutral-900">{title}</p>
-                   <div className="flex flex-col md:flex-row justify-between items-center py-2 text-[11px] md:text-sm">
-                    <p className="text-neutral-800">Price : ₹{price}</p>
-                    <div>
-                        <Stars rating = {rating.rate}/>
-
-                    </div>
-                   </div>
-                    </NavLink>
-                    {cartProducts.some((e)=> e.id == id) ? (
-                        <button className="h-10 w-full py-1 text-blue-950 px-3 rounded-2xl border-2 border-green-950 hover:border-white cursor-pointer
-                         hover:text-white duration-300 " onClick={()=> removeFromCart(id)}>remove</button>
-                    ):(
-                        <button className="h-10 w-full py-1 text-blue-950 px-3 rounded-2xl border-2 border-blue-950 hover:bg-blue-950 hover:border-white cursor-pointer hover:text-white duration-300" 
-                        onClick={()=> addToCart(id, image, title, price)}> add 
-
-                        </button>
-                    )}
-
-                </div>
-            )
-        })}
-      
-    </div>
-    
-    
-    </>
+    <img className="h-24 md:h-40 lg:h-52 w-full object-contain " src={image || null} alt="" />
+    <p className="text-[11px] md:text-base truncate text-neutral-900">{title}</p>
+   <div className="flex flex-col md:flex-row justify-between items-center py-2 text-[11px] md:text-sm">
+    <p className="text-neutral-800">Price : ₹{price}</p>
+    <div>
+    <Stars rating = {rating.rate}/>
+</div>
+</div>
+</NavLink>
+{cartProducts.some((e)=> e.id == id) ? (
+    <button className="h-10 w-full py-1 text-blue-950 px-3 rounded-2xl border-2 border-green-950 hover:border-white cursor-pointer
+     hover:text-white duration-300 " onClick={()=> removeFromCart(id)}>remove</button>
+ ):(
+<button className="h-10 w-full py-1 text-blue-950 px-3 rounded-2xl border-2 border-blue-950 hover:bg-blue-950 hover:border-white cursor-pointer hover:text-white duration-300" 
+onClick={()=> addToCart(id, image, title, price)}> add 
+</button>
+)}
+</div>
+)})}
+</div>
+</>
   )
 }
 export default Products

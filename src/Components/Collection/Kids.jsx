@@ -6,7 +6,7 @@ import { CartProductContext } from "../../App";
 
 const Kids = () => {
   const [products, setProducts] = useState([]);
-  const { cartProducts, setCartProducts} = useContext(CartProductContext);
+  const { cartProducts, setCartProducts,wishlist,setWishlist} = useContext(CartProductContext);
   const navigate = useNavigate();
   useEffect(()=>{
     Promise.all([
@@ -75,7 +75,27 @@ const addToCart = (product) => {
         (item) => item.id === product.id
       )
       return(
-        <div key={product.id} className="bg-white shadow-md p-3 rounded-2xl  flex flex-col justify-between hover:shadow-xl duration-300">
+        <div key={product.id} className="relative bg-white shadow-md p-3 rounded-2xl  flex flex-col justify-between hover:shadow-xl duration-300">
+        <button
+  onClick={(e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const exists = wishlist.some((item) => item.id === product.id);
+
+    if (!exists) {
+      setWishlist([...wishlist, product]);
+    } else {
+      setWishlist(wishlist.filter((item) => item.id !== product.id));
+    }
+  }}
+  className="absolute top-3 right-3 text-3xl z-10 bg-white rounded-full p-1 shadow-md"
+>
+  {wishlist.some((item) => item.id === product.id) ? "❤️" : "🤍"}
+</button>
+
+
+
           <NavLink to={`/product/${product.id}`}>
           <img src={product.thumbnail} alt={product.title} className="h-32 sm:h-40 md:h-52 w-full object-contain" />
           <h2 className="font-semibold mt-2 text-xs sm:text-sm  md:text-base text-neutral-800 line-clamp-2">{product.title}</h2>

@@ -22,7 +22,7 @@ const Product = () => {
   
   useEffect(() => {
   axios
-    .get(`https://dummyjson.com/products/₹{id}`)
+    .get(`https://dummyjson.com/products/${id}`)
     .then(({ data }) => {
       setState(data);
     })
