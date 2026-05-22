@@ -4,7 +4,7 @@ const Order = require("../models/Order");
 const router = express.Router();
 
 
-router.post("/add", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const order = new Order(req.body);
 
